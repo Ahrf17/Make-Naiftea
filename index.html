@@ -8,7 +8,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
-    <style>
+   <script>
+    function convertArabicNumbersToEnglish(input) {
+      const arabicNumbers = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+      const englishNumbers = ['0','1','2','3','4','5','6','7','8','9'];
+
+      let result = '';
+      for (let char of input) {
+        const index = arabicNumbers.indexOf(char);
+        result += index !== -1 ? englishNumbers[index] : char;
+      }
+      return result;
+    }
+
+    function setupNumberConversion() {
+      document.querySelectorAll('input, textarea').forEach(el => {
+        el.addEventListener('input', function () {
+          this.value = convertArabicNumbersToEnglish(this.value);
+        });
+      });
+    }
+
+    window.onload = setupNumberConversion;
+  </script>
+ <style>
 
         
         :root {
